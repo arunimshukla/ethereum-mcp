@@ -207,7 +207,7 @@ async function cachedRpcCall(
   noCache: boolean = false
 ): Promise<any> {
   return cachedFetch(
-    `jsonrpc:${cacheKey}`,
+    JSON.stringify(['jsonrpc', nodeUrl, cacheKey, method, params]),
     ttl,
     () => rpcCall(method, params),
     noCache
